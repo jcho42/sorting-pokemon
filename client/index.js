@@ -1,16 +1,22 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import mergeSort from './mergesort';
+
+const intiialPokemon = [25, 9, 3, 34, 57, 131, 6];
 
 const App = () => {
-  const pokemonIds = [25, 9, 3, 34, 57, 131];
+  const [pokemon, setPokemon] = useState(intiialPokemon);
+  const sortPokemon = () => {
+    setPokemon(mergeSort(pokemon))
+  }
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Hello Pokemon</h1>
       <h2 style={{ textAlign: 'center' }}>Let's Get Sorted</h2>
-      <button>Sort!</button>
+      <button onClick={sortPokemon}>Sort!</button>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        {pokemonIds.map((id) => {
+        {pokemon.map((id) => {
           return (
             <div
               key={id}
