@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import mergeSort from './mergesort';
 
-const intiialPokemon = [25, 9, 3, 34, 57, 131, 6];
+const intiialPokemon = [25, 7, 1, 32, 56, 131, 4, 63];
 
 const App = () => {
   const [pokemon, setPokemon] = useState(intiialPokemon);
   const sortPokemon = () => {
-    setPokemon(mergeSort(pokemon))
-  }
+    setPokemon(mergeSort(pokemon));
+  };
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Hello Pokemon</h1>
@@ -22,6 +22,7 @@ const App = () => {
               key={id}
               style={{
                 border: '1px solid black',
+                textAlign: 'center',
                 width: '120px',
                 height: '120px',
                 margin: '10px',
@@ -30,7 +31,7 @@ const App = () => {
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
               />
-              <div style={{ textAlign: 'center' }}>#{id}</div>
+              <div>#{id}</div>
             </div>
           );
         })}
