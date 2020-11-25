@@ -3,7 +3,16 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import mergeSort from './mergesort';
 
-const intiialPokemon = [25, 7, 1, 32, 56, 131, 4, 63];
+const randomPoke = (size, lower, upper) => {
+  const random = []
+  while (size--) {
+    const randNum = Math.floor(lower + Math.random() * upper)
+    random.push(randNum)
+  }
+  return random
+}
+
+const intiialPokemon = randomPoke(150, 1, 150)
 
 const App = () => {
   const [pokemon, setPokemon] = useState(intiialPokemon);
@@ -16,10 +25,12 @@ const App = () => {
       <h2 style={{ textAlign: 'center' }}>Let's Get Sorted</h2>
       <button onClick={sortPokemon}>Sort!</button>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        {pokemon.map((id) => {
+        {pokemon.map((id, index) => {
           return (
             <div
-              key={id}
+              // Without unique keys, the children cannot maintain their identities across updates.
+              // Setting key to id, with duplicate id's cause the children to be duplicated when sorted.
+              key={index}
               style={{
                 border: '1px solid black',
                 textAlign: 'center',
